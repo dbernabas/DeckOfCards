@@ -14,8 +14,9 @@ public class Deck {
 		this.cards = new ArrayList<Card>(numOfTotalCards);
 		Card card;
 		int i = 0;
-		for (Suit suit : Suit.values()){
-			for (Value value : Value.values()){
+		
+		for (Card.Suit suit : Card.Suit.values()){
+			for (Card.Value value : Card.Value.values()){
 				card  = new Card(suit, value);
 				this.cards.add(i, card);
 				i++;
@@ -25,7 +26,13 @@ public class Deck {
 	
 	// Returns the number of cards left in deck
 	public int numOfCards(){
+		this.cards.trimToSize();
 		return this.cards.size();
+	}
+	
+	// Cards Getter
+	public ArrayList<Card> getCards(){
+		return this.cards;
 	}
 	
 	// Returns and remove a card from the deck
@@ -39,13 +46,12 @@ public class Deck {
 	 * for each card 
 	 *   switch its place to a random place anywhere from 0 to 52
 	 */
-	public void suffle (){
+	public void shuffle (){
 		for (int i = 0; i < numOfTotalCards; i++ ){
 			Random rand = new Random();
 			int min = 0,
 				max = numOfTotalCards - 1;
 			int randomPos = rand.nextInt(max - min + 1) + min;
-
 			this.swapCardsInDeck(i, randomPos);
 		}
 	}
@@ -53,8 +59,8 @@ public class Deck {
 	// A simple private helper method to swap card positions in the deck
 	private void swapCardsInDeck( int posOne, int posTwo ){
 		Card temp = this.cards.get(posOne);
-		this.cards.add(posOne, this.cards.get(posTwo));
-		this.cards.add(posTwo, temp);
+		this.cards.set(posOne, this.cards.get(posTwo));
+		this.cards.set(posTwo, temp);
 	}
 	
 	// A toString method for easy printing

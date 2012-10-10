@@ -12,6 +12,7 @@ public class Caller {
 	
 	// Initialize caller
 	public Caller (String name){
+		this.cards = new ArrayList<Card>();
 		this.name = name;
 	}
 	
@@ -28,12 +29,22 @@ public class Caller {
 	// Tell Dealer to deal one card
 	public void call (Dealer dealer){
 		Card card = dealer.dealOneCard();
-		if (card != null)
-			this.cards.add(dealer.dealOneCard());
+		if (card != null) {
+			System.out.println(card);
+			this.cards.add(card);
+		}
 	}
 	
 	// Return all cards that this caller has
 	public ArrayList<Card> getCards(){
 		return this.cards;
+	}
+	
+	public String toString(){
+		String print = "";
+		for(int i = 0; i < this.cards.size(); i++){
+			print = print + this.cards.get(i).toString() + " \n";
+		}
+		return print;
 	}
 }

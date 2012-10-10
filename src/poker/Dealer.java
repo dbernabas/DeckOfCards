@@ -14,19 +14,24 @@ public class Dealer {
 	}
 	
 	// Shuffle cards  in deck
-	public void suffle(){
-		this.deck.suffle();
+	public void shuffle(){
+		this.deck.shuffle();
 	}
 	
+	// Deck Getter
+	public Deck getDeck(){
+		return this.deck;
+	}
 	// If there are cards left in the deck, return a random card from the deck
 	public Card dealOneCard(){
-		if (this.deck.numOfCards() == 0) {
+		//this.deck.getCards().trimToSize();
+		if (this.callsMade > 51) {
 			assert this.callsMade == Deck.numOfTotalCards;
 			return null;
 		}
 		Random rand = new Random();
 		int min = 0,
-			max = Deck.numOfTotalCards - this.deck.numOfCards();
+			max = (Deck.numOfTotalCards - this.callsMade) - 1 ;
 		int randomPos = rand.nextInt(max - min + 1) + min;
 		this.callsMade++;
 		return this.deck.removeCard(randomPos); 
