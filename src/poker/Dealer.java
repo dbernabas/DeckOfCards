@@ -22,11 +22,12 @@ public class Dealer {
 	public Deck getDeck(){
 		return this.deck;
 	}
+	
 	// If there are cards left in the deck, return a random card from the deck
 	public Card dealOneCard(){
-		//this.deck.getCards().trimToSize();
-		if (this.callsMade > 51) {
+		if (this.callsMade > Deck.numOfTotalCards - 1) {
 			assert this.callsMade == Deck.numOfTotalCards;
+			System.out.println("No more Cards in the deck!!!");
 			return null;
 		}
 		Random rand = new Random();
@@ -36,4 +37,7 @@ public class Dealer {
 		this.callsMade++;
 		return this.deck.removeCard(randomPos); 
 	}
+	
+	// Putting back stuff
+	
 }

@@ -29,8 +29,8 @@ public class Caller {
 	// Tell Dealer to deal one card
 	public void call (Dealer dealer){
 		Card card = dealer.dealOneCard();
+		// System.out.println(this.name);
 		if (card != null) {
-			System.out.println(card);
 			this.cards.add(card);
 		}
 	}
@@ -41,7 +41,8 @@ public class Caller {
 	}
 	
 	public String toString(){
-		String print = "";
+		String print = "------------------------------------------------- \n";
+		print = print + this.name + " has " + this.cards.size() + " cards! \n";
 		for(int i = 0; i < this.cards.size(); i++){
 			print = print + this.cards.get(i).toString() + " \n";
 		}
